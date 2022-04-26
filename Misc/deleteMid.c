@@ -1,3 +1,5 @@
+// Delete Middle Elements of a Linked List [in case of even number of nodes .. right one is deleted !]
+
 #include<stdio.h>
 #include<stdlib.h>
 

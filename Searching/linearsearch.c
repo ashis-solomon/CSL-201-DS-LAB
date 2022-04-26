@@ -1,3 +1,5 @@
+// Linear Search - Iterative
+
 #include<stdio.h>
 
 int linearsearch(int arr[],int size,int data){

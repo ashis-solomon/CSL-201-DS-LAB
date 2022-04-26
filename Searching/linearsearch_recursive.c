@@ -1,3 +1,5 @@
+// Linear Search - Recursive
+
 #include<stdio.h>
 
 int linearsearch(int arr[],int size,int data,int i){

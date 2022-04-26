@@ -1,3 +1,5 @@
+// Binary Search - Iterative
+
 #include<stdio.h>
 
 int binsearch(int arr[],int low,int high,int data){
