@@ -75,16 +75,16 @@ void main(){
 		printf("Enter menu choice : ");
 		scanf("%d",&choice);
 		switch(choice){
-			case 1: 	printf("Enter the element to be inserted : ");
-					scanf("%d",&ele);
-					insert_end(&L,ele);
-					break;
-			case 2: 	display(&L);
-					break;
+			case 1: printf("Enter the element to be inserted : ");
+				scanf("%d",&ele);
+				insert_end(&L,ele);
+				break;
+			case 2: display(&L);
+				break;
 			case 3:	deleteMid(&L);
-					break;
+				break;
 			case 4:	return;
-			default: 	printf("Enter a valid choice !!!\n");
+			default:printf("Enter a valid choice !!!\n");
 		}	
 	goto repeat;
 	
