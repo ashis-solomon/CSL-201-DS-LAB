@@ -7,7 +7,6 @@ typedef struct node{
     struct node *right;
 }treeptr;
 
-treeptr node;
 
 treeptr *newNode(int value){
     treeptr *node = (treeptr*)malloc(sizeof(treeptr));
