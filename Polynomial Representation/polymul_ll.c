@@ -51,34 +51,6 @@ int compare(int a,int b){
 	else{return -1;}
 }
 
-void polyadd(polynomial* poly1,polynomial* poly2,polynomial** poly3){
-	polynomial* p1 = poly1;
-	polynomial* p2 = poly2;
-
-	while(p1!=NULL && p2!=NULL){
-		switch(compare(p1->exp,p2->exp)){
-			case 0  :	insert(poly3,p1->coeff+p2->coeff,p1->exp);
-					p1 = p1->link;
-					p2 = p2->link;
-					break;
-			case 1  :	insert(poly3,p1->coeff,p1->exp);
-					p1 = p1->link;
-					break;
-			case -1 :	insert(poly3,p2->coeff,p2->exp);
-					p2 = p2->link;
-					break;
-		}
-	}
-	while(p1!=NULL){
-		insert(poly3,p1->coeff,p1->exp);
-		p1 = p1->link;
-	}
-	while(p2!=NULL){
-		insert(poly3,p2->coeff,p2->exp);
-		p2 = p2->link;
-	}
-}
-
 void sortll(polynomial** p){
 	int temp;
 	polynomial* temp1 = *p;
@@ -102,6 +74,33 @@ void sortll(polynomial** p){
 	} 
 }
 
+void polymul(polynomial* poly1,polynomial* poly2,polynomial** poly3){
+	polynomial* p1 = poly1;
+	polynomial* p2 = poly2;
+
+	while(p1!=NULL){
+		p2 = poly2;
+		while(p2!=NULL){
+			insert(poly3,p1->coeff*p2->coeff,p1->exp+p2->exp);
+			p2 = p2->link;
+		}
+		p1 = p1->link;
+	}
+}
+
+void reduce_poly(polynomial** p){
+	polynomial* temp = *p;
+	while(temp->link!=NULL){
+		repeat:
+		if(temp->exp == temp->link->exp){
+			temp->coeff = temp->coeff + temp->link->coeff;
+			temp->link = temp->link->link;
+		}
+		if(temp->exp == temp->link->exp){goto repeat;}
+		temp = temp->link;
+	}
+}
+
 void main(){
 	polynomial* poly1 = NULL;
 	polynomial* poly2 = NULL;
@@ -118,8 +117,10 @@ void main(){
 	display(poly1,"1");
 	display(poly2,"2");
 
-	polyadd(poly1,poly2,&poly3);
+	polymul(poly1,poly2,&poly3);
+	sortll(&poly3);
+	reduce_poly(&poly3);
 
-	display(poly3,"SUM");
+	display(poly3,"PRODUCT");
 	
 }
